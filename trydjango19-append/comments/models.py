@@ -4,7 +4,9 @@ from django.contrib.contenttypes.models import ContentType
 from django.conf import settings
 from posts.models import Post
 from django.db.models.signals import pre_save,pre_delete
+from froala_editor.fields import FroalaField
 # Create your models here.
+
 
 class Comment(models.Model):
     user        = models.ForeignKey(settings.AUTH_USER_MODEL,default=1)

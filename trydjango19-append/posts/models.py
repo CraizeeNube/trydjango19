@@ -8,7 +8,7 @@ import uuid
 from markdown_deux import markdown
 from django.utils.safestring import mark_safe
 from django.core.validators import *
-
+from froala_editor.fields import FroalaField
 
 # Create your models here.
 # MVC
@@ -36,7 +36,7 @@ class Post(models.Model):
                               )
     height_field = models.IntegerField(default=0)
     width_field = models.IntegerField(default=0)
-    content = models.TextField()
+    content = FroalaField();
     updated = models.DateTimeField(auto_now=True, auto_now_add=False)
     timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
     views = models.PositiveIntegerField(default=0)
@@ -73,10 +73,10 @@ class Post(models.Model):
 #         return create_slug(instance,buffer,new_slug=s)
 #     return slug
 
-    def get_markdown(self):
-        content = self.content
-        md =  markdown(content)
-        return mark_safe(md)
+    # def get_markdown(self):
+    #     content = self.content
+    #     md =  markdown(content)
+    #     return mark_safe(md)
 
 
 def create_slug(instance):

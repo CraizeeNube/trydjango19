@@ -19,7 +19,7 @@
         <p>Author:{{ instance.user.get_full_name }}</p>
     <p>
     <div class="fb-like" data-width=""></div>
-   <div class = "res-img"> <p>{{ instance.get_markdown}}<br></p></div>
+   <div class = "res-img"> <p>{{ instance.content|safe}}<br></p></div>
         <hr>
     <div>
         <p class="lead">Comments:</p>
@@ -33,7 +33,11 @@
             {% endfor %}
 
     </div>
-
+{% block script2 %}
+    <script>
+        $(".fr-wrapper div").remove()
+    </script>
+{% endblock script2%}
 
 
 

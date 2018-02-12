@@ -4,11 +4,12 @@ from pagedown.widgets import PagedownWidget
 from django.core.validators import *
 from django.utils import timezone
 from bootstrap_datepicker.widgets import DatePicker
+from froala_editor.widgets import FroalaEditor
+from datetimewidget.widgets import DateTimeWidget
 
 
 class PostForm(forms.ModelForm):
-    publish = forms.DateField(widget=forms.SelectDateWidget)
-    content = forms.CharField(widget=PagedownWidget(show_preview=False))
+    content = forms.CharField(widget=FroalaEditor)
     draft = forms.BooleanField
     image = forms.FileField
 
@@ -21,7 +22,7 @@ class PostForm(forms.ModelForm):
                 raise ValidationError("Image file too large ( > 4mb )")
             return image
         else:
-            image ="#"
+            image =""
         return image
 
 
@@ -35,3 +36,7 @@ class PostForm(forms.ModelForm):
             'publish'
 
         ]
+        widgets = {
+            # Use localization and bootstrap 3
+            'publish': DateTimeWidget(attrs={'id': "publish"}, usel10n=True, bootstrap_version=3)
+        }
